@@ -95,10 +95,6 @@ ecm_generate_headers(KArchive_HEADERS
     REQUIRED_HEADERS KArchive_HEADERS
 )
 
-install(TARGETS KF6Archive
-        EXPORT KF6ArchiveTargets
-        ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
-
 if(LIBLZMA_FOUND)
     ecm_generate_headers(KArchive_HEADERS
         HEADER_NAMES
@@ -107,11 +103,33 @@ if(LIBLZMA_FOUND)
     )
 endif()
 
-install(FILES
-            ${CMAKE_CURRENT_BINARY_DIR}/karchive_export.h
-            ${KArchive_HEADERS}
+set(KArchive_HEADERS
+        ${KArchive_HEADERS}
+        ${CMAKE_CURRENT_BINARY_DIR}/karchive_export.h
+)
+
+if (${CMAKE_VERSION} VERSION_LESS "3.23.0")
+  install(TARGETS KF6Archive
+        EXPORT KF6ArchiveTargets
+        ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
+  install(FILES
+        ${KArchive_HEADERS}
         DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KArchive
         COMPONENT Devel)
+else()
+  target_sources(KF6Archive
+    PUBLIC
+    FILE_SET public_headers
+    TYPE HEADERS
+    BASE_DIRS ${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR}
+    FILES ${KArchive_HEADERS}
+  )
+  install(TARGETS KF6Archive
+        EXPORT KF6ArchiveTargets
+        ${KF_INSTALL_TARGETS_DEFAULT_ARGS}
+        FILE_SET public_headers DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KArchive)
+    add_test(NAME interface_test COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target all_verify_interface_header_sets)
+endif()
 
 ecm_qt_install_logging_categories(
     EXPORT KARCHIVE

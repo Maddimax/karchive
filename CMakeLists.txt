@@ -39,6 +39,8 @@ include(KDEInstallDirs)
 include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 include(KDEGitCommitHooks)
+# TODO As far as i can see we can add this to KDEFrameworkCompilerSettings it does not break old cmakes to have it defined
+set(CMAKE_VERIFY_INTERFACE_HEADER_SETS ON)
 
 include(ECMGenerateExportHeader)
 
