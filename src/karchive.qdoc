@@ -1,0 +1,11 @@
+/*!
+    \module KArchive
+    \title KArchive C++ Classes
+    \ingroup modules
+    \cmakepackage KF6
+    \cmakecomponent Archive
+
+    \brief KArchive
+
+    foo
+*/

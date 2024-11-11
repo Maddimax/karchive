@@ -8,8 +8,9 @@
 
 #include <karchive.h>
 
-/**
- * @class K7Zip k7zip.h K7Zip
+/*!
+ * \class K7Zip
+ * \inmodule KArchive
  *
  * A class for reading / writing p7zip archives.
  *
@@ -20,25 +21,25 @@ class KARCHIVE_EXPORT K7Zip : public KArchive
     Q_DECLARE_TR_FUNCTIONS(K7Zip)
 
 public:
-    /**
+    /*!
      * Creates an instance that operates on the given filename
      * using the compression filter associated to given mimetype.
      *
-     * @param filename is a local path (e.g. "/home/user/myfile.7z")
+     * \a filename is a local path (e.g. "/home/user/myfile.7z")
      */
     explicit K7Zip(const QString &filename);
 
-    /**
+    /*!
      * Creates an instance that operates on the given device.
      * The device can be compressed (KCompressionDevice) or not (QFile, etc.).
      * @warning Do not assume that giving a QFile here will decompress the file,
      * in case it's compressed!
-     * @param dev the device to read from. If the source is compressed, the
+     * \a dev the device to read from. If the source is compressed, the
      * QIODevice must take care of decompression
      */
     explicit K7Zip(QIODevice *dev);
 
-    /**
+    /*!
      * If the archive is still opened, then it will be
      * closed automatically by the destructor.
      */
@@ -77,11 +78,11 @@ protected:
     /// Reimplemented from KArchive
     bool doWriteData(const char *data, qint64 size) override;
 
-    /**
+    /*!
      * Opens the archive for reading.
      * Parses the directory listing of the archive
      * and creates the KArchiveDirectory/KArchiveFile entries.
-     * @param mode the mode of the file
+     * \a mode the mode of the file
      */
     bool openArchive(QIODevice::OpenMode mode) override;
     bool closeArchive() override;

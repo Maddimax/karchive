@@ -1,0 +1,17 @@
+include($KDE_DOCS/global/qt-module-defaults-online.qdocconf)
+
+project = KArchive
+description = KArchive
+
+documentationinheaders = true
+
+headerdirs = .
+
+headers.fileextensions = "*.qdoc *.h"
+
+outputformats = HTML
+
+depends += \
+    kde \
+    qtcore \
+    qtgui

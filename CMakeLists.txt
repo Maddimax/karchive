@@ -39,6 +39,7 @@ include(KDEInstallDirs)
 include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 include(KDEGitCommitHooks)
+include(ECMGenerateQDoc)
 
 include(ECMGenerateExportHeader)
 

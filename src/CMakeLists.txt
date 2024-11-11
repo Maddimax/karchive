@@ -143,3 +143,4 @@ if(BUILD_QCH)
     )
 endif()
 
+ecm_generate_qdoc(KF6Archive karchive.qdocconf)

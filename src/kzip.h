@@ -11,8 +11,9 @@
 #include "kzipfileentry.h" // for source compat
 
 class KZipFileEntry;
-/**
- *   @class KZip zip.h KZip
+/*!
+ *   \class KZip
+ *   \inmodule KArchive
  *
  *   A class for reading / writing zip archives.
  *
@@ -39,30 +40,30 @@ class KARCHIVE_EXPORT KZip : public KArchive
     Q_DECLARE_TR_FUNCTIONS(KZip)
 
 public:
-    /**
+    /*!
      * Creates an instance that operates on the given filename.
      * using the compression filter associated to given mimetype.
      *
-     * @param filename is a local path (e.g. "/home/holger/myfile.zip")
+     * \a filename is a local path (e.g. "/home/holger/myfile.zip")
      */
     explicit KZip(const QString &filename);
 
-    /**
+    /*!
      * Creates an instance that operates on the given device.
      * The device can be compressed (KCompressionDevice) or not (QFile, etc.).
      * @warning Do not assume that giving a QFile here will decompress the file,
      * in case it's compressed!
-     * @param dev the device to access
+     * \a dev the device to access
      */
     explicit KZip(QIODevice *dev);
 
-    /**
+    /*!
      * If the zip file is still opened, then it will be
      * closed automatically by the destructor.
      */
     ~KZip() override;
 
-    /**
+    /*!
      * Describes the contents of the "extra field" for a given file in the Zip archive.
      */
     enum ExtraField {
@@ -71,22 +72,22 @@ public:
         DefaultExtraField = 1, // alias of ModificationTime
     };
 
-    /**
+    /*!
      * Call this before writeFile or prepareWriting, to define what the next
      * file to be written should have in its extra field.
-     * @param ef the type of "extra field"
-     * @see extraField()
+     * \a ef the type of "extra field"
+     * \sa extraField()
      */
     void setExtraField(ExtraField ef);
 
-    /**
+    /*!
      * The current type of "extra field" that will be used for new files.
-     * @return the current type of "extra field"
-     * @see setExtraField()
+     * Returns the current type of "extra field"
+     * \sa setExtraField()
      */
     ExtraField extraField() const;
 
-    /**
+    /*!
      * Describes the compression type for a given file in the Zip archive.
      */
     enum Compression {
@@ -94,18 +95,18 @@ public:
         DeflateCompression = 1, ///< Deflate compression method.
     };
 
-    /**
+    /*!
      * Call this before writeFile or prepareWriting, to define whether the next
      * files to be written should be compressed or not.
-     * @param c the new compression mode
-     * @see compression()
+     * \a c the new compression mode
+     * \sa compression()
      */
     void setCompression(Compression c);
 
-    /**
+    /*!
      * The current compression mode that will be used for new files.
-     * @return the current compression mode
-     * @see setCompression()
+     * Returns the current compression mode
+     * \sa setCompression()
      */
     Compression compression() const;
 
@@ -129,26 +130,26 @@ protected:
                           const QDateTime &mtime,
                           const QDateTime &creationTime) override;
 
-    /**
+    /*!
      * Write data to a file that has been created using prepareWriting().
-     * @param size the size of the file
-     * @return true if successful, false otherwise
+     * \a size the size of the file
+     * Returns true if successful, false otherwise
      */
     bool doFinishWriting(qint64 size) override;
 
-    /**
+    /*!
      * Write data to a file that has been created using prepareWriting().
-     * @param data a pointer to the data
-     * @param size the size of the chunk
-     * @return true if successful, false otherwise
+     * \a data a pointer to the data
+     * \a size the size of the chunk
+     * Returns true if successful, false otherwise
      */
     bool doWriteData(const char *data, qint64 size) override;
 
-    /**
+    /*!
      * Opens the archive for reading.
      * Parses the directory listing of the archive
      * and creates the KArchiveDirectory/KArchiveFile entries.
-     * @param mode the mode of the file
+     * \a mode the mode of the file
      */
     bool openArchive(QIODevice::OpenMode mode) override;
 

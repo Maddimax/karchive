@@ -38,9 +38,9 @@ QTEST_MAIN(KArchiveTest)
 
 static const int SIZE1 = 100;
 
-/**
+/*!
  * Writes test fileset specified archive
- * @param archive archive
+ * \a archive archive
  */
 static void writeTestFilesToArchive(KArchive *archive)
 {
@@ -159,9 +159,9 @@ static QStringList recursiveListEntries(const KArchiveDirectory *dir, const QStr
     return ret;
 }
 
-/**
+/*!
  * Verifies contents of specified archive against test fileset
- * @param archive archive
+ * \a archive archive
  */
 static void testFileData(KArchive *archive)
 {
@@ -328,7 +328,7 @@ static void testCopyTo(KArchive *archive)
     QVERIFY(QFileInfo(dirName + "executableAll").permissions() & (QFileDevice::ExeOwner | QFileDevice::ExeGroup | QFileDevice::ExeOther));
 }
 
-/**
+/*!
  * Prepares dataset for archive filter tests
  */
 void KArchiveTest::setupData()
@@ -354,8 +354,8 @@ void KArchiveTest::setupData()
 #endif
 }
 
-/**
- * @see QTest::initTestCase()
+/*!
+ * \sa QTest::initTestCase()
  */
 void KArchiveTest::initTestCase()
 {
@@ -401,7 +401,7 @@ void KArchiveTest::testCreateTar_data()
     QTest::newRow(".tar") << "karchivetest.tar";
 }
 
-/**
+/*!
  * @dataProvider testCreateTar_data
  */
 void KArchiveTest::testCreateTar()
@@ -430,7 +430,7 @@ void KArchiveTest::testCreateTar()
     // QFile::remove(fileName);
 }
 
-/**
+/*!
  * @dataProvider setupData
  */
 void KArchiveTest::testCreateTarXXX()
@@ -472,7 +472,7 @@ void KArchiveTest::testCreateTarXXX()
         QVERIFY(dt.secsTo(expectedDateTime) <= 2);                                                                                                             \
     }
 
-/**
+/*!
  * @dataProvider setupData
  */
 void KArchiveTest::testReadTar() // testCreateTarGz must have been run first.
@@ -544,7 +544,7 @@ void KArchiveTest::testReadTar() // testCreateTarGz must have been run first.
     }
 }
 
-/**
+/*!
  * This tests the decompression using kfilterdev, basically.
  * To debug KTarPrivate::fillTempFile().
  *
@@ -576,7 +576,7 @@ void KArchiveTest::testUncompress()
     QVERIFY(totalSize > 26000); // 27648 here when using gunzip
 }
 
-/**
+/*!
  * @dataProvider setupData
  */
 void KArchiveTest::testTarFileData()
@@ -592,7 +592,7 @@ void KArchiveTest::testTarFileData()
     QVERIFY(tar.close());
 }
 
-/**
+/*!
  * @dataProvider setupData
  */
 void KArchiveTest::testTarCopyTo()
@@ -608,7 +608,7 @@ void KArchiveTest::testTarCopyTo()
     QVERIFY(tar.close());
 }
 
-/**
+/*!
  * @dataProvider setupData
  */
 void KArchiveTest::testTarReadWrite()
@@ -646,7 +646,7 @@ void KArchiveTest::testTarMaxLength_data()
     QTest::newRow("maxlength.tar.gz") << "karchivetest-maxlength.tar.gz";
 }
 
-/**
+/*!
  * @dataProvider testTarMaxLength_data
  */
 void KArchiveTest::testTarMaxLength()
@@ -1192,7 +1192,7 @@ void KArchiveTest::testZipReadRedundantDataDescriptor_data()
     QTest::newRow("withSignature") << "data/redundantDataDescriptorsWithSignature.zip";
 }
 
-/**
+/*!
  * @dataProvider testZipReadRedundantDataDescriptor_data
  */
 void KArchiveTest::testZipReadRedundantDataDescriptor()
@@ -1358,8 +1358,8 @@ void KArchiveTest::testAr()
     QVERIFY(ar.close());
 }
 
-/**
- * @see QTest::cleanupTestCase()
+/*!
+ * \sa QTest::cleanupTestCase()
  */
 void KArchiveTest::cleanupTestCase()
 {
@@ -1375,7 +1375,7 @@ void KArchiveTest::cleanupTestCase()
 
 #if HAVE_XZ_SUPPORT
 
-/**
+/*!
  * Prepares dataset for archive filter tests
  */
 void KArchiveTest::setup7ZipData()
@@ -1384,7 +1384,7 @@ void KArchiveTest::setup7ZipData()
     QTest::newRow(".7z") << "karchivetest.7z";
 }
 
-/**
+/*!
  * @dataProvider testCreate7Zip_data
  */
 void KArchiveTest::testCreate7Zip()
@@ -1407,7 +1407,7 @@ void KArchiveTest::testCreate7Zip()
     }
 }
 
-/**
+/*!
  * @dataProvider setupData
  */
 void KArchiveTest::testRead7Zip() // testCreate7Zip must have been run first.
@@ -1456,7 +1456,7 @@ void KArchiveTest::testRead7Zip() // testCreate7Zip must have been run first.
     }
 }
 
-/**
+/*!
  * @dataProvider setupData
  */
 void KArchiveTest::test7ZipFileData()
@@ -1472,7 +1472,7 @@ void KArchiveTest::test7ZipFileData()
     QVERIFY(k7zip.close());
 }
 
-/**
+/*!
  * @dataProvider setupData
  */
 void KArchiveTest::test7ZipCopyTo()
@@ -1488,7 +1488,7 @@ void KArchiveTest::test7ZipCopyTo()
     QVERIFY(k7zip.close());
 }
 
-/**
+/*!
  * @dataProvider setupData
  */
 void KArchiveTest::test7ZipReadWrite()
@@ -1520,7 +1520,7 @@ void KArchiveTest::test7ZipReadWrite()
     QFile::remove(fileName);
 }
 
-/**
+/*!
  * @dataProvider test7ZipMaxLength_data
  */
 void KArchiveTest::test7ZipMaxLength()
